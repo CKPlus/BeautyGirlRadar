@@ -1,4 +1,4 @@
-from fabric.api import run, env
+from fabric.api import run, env, cd
 from fabric.api import local
 from fabric.colors import green, yellow
 from fabric.contrib import files
@@ -7,7 +7,8 @@ from fabric.context_managers import prefix
 env.hosts = ['54.92.113.106']
 env.user = 'ubuntu'
 env_base_path = '$HOME/.virtualenvs'
-env_name = 'ideal'
+env_name = 'bgradar'
+app_path = '$HOME/BeautyGirlRadar'
 
 
 def first_install():
@@ -35,7 +36,7 @@ def apt_get_install():
     print(green("apt-get Install end..."))
 
 
-def create_env():
+def create_env(env_name):
     print(green("Create Started..."))
 
     with prefix('WORKON_HOME=' + env_base_path):
@@ -46,16 +47,24 @@ def create_env():
             run('mkvirtualenv ' + env_name)
 
             with prefix('workon ' + env_name):
-                run('pip list')
-                # run('pip install -r requirements.txt')
+                with cd(app_path):
+                    run('pip install -r pip-requires.txt')
 
     print(green("Create End..."))
 
 
 def deploy():
+    print(green("Deploy Started..."))
     # first_install()
-    apt_get_install()
-    # create_env()
+    # apt_get_install()
+    if files.exists(app_path):
+        run('rm -rf ' + app_path)
+
+    run('git clone https://github.com/wesgt/BeautyGirlRadar.git')
+    # run('git clone git@github.com:wesgt/BeautyGirlRadar.git')
+
+    create_env(env_name)
+    print(green("Deploy End..."))
 
 
 def is_local():
