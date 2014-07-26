@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+from bson.objectid import ObjectId
 from pymongo import MongoClient
 from datetime import datetime
 from pymongo import GEO2D
+from . import google_api
 
 dbname_bgradar = 'bg_radar'
 c_name_beautylbs = 'beauty_lbs'
@@ -14,10 +16,10 @@ class BeautyLBSManager():
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
         collection.ensure_index([('locs', GEO2D)])
 
-    def update_picurl(self, fbid, pic_url):
+    def update_picurl(self, uid, pic_url):
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
         collection.update(
-            {'fbid': fbid},
+            {'_id': ObjectId(uid)},
             {
                 '$set': {
                     'picurl': pic_url,
@@ -25,20 +27,40 @@ class BeautyLBSManager():
                 }
             })
 
-    def update_lbs(self, fbid, lng, lat, picurl=None):
+    def update_lbs(self, fbid, lng, lat, comment=None, picurl=None):
 
         if picurl is None:
             picurl = ''
 
+        address = google_api.get_address_by_lnglat(lng, lat)
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
+
+        if comment is None:
+            comment = ''
+
+        id = ObjectId()
+
         collection.insert({
+            '_id': id,
             'fbid': fbid,
             'locs': [lng, lat],
             'lng': lng,
             'lat': lat,
             'picurl': picurl,
+            'comment': comment,
+            'address': address,
             'ctime': datetime.utcnow()
             })
+
+        return str(id)
+
+    def find_all(self):
+        collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
+        return collection.find({})
+
+    def find_by_fbid(self, obj_id):
+        collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
+        return collection.find_one({'_id': ObjectId(obj_id)})
 
     def find_near(self, lng, lat):
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)

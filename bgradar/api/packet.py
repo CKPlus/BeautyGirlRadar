@@ -12,6 +12,16 @@ class ClientHotPoints(object):
         self.picurls = []
 
 
+class ClientLBSData(object):
+    def __init__(self):
+        self.uid = ''
+        self.lng = 0.0
+        self.lat = 0.0
+        self.comment = ''
+        self.address = ''
+        self.picurl = ''
+
+
 class ClientResults(object):
 
     def __init__(self):
@@ -51,6 +61,16 @@ def to_json(python_object):
             'lat': python_object.lat,
             'count': python_object.count,
             'picurls': python_object.picurls,
+        }
+
+    if isinstance(python_object, ClientLBSData):
+        return {
+            'uid': python_object.uid,
+            'lng': python_object.lng,
+            'lat': python_object.lat,
+            'comment': python_object.comment,
+            'address': python_object.address,
+            'picurls': python_object.picurls
         }
 
     if isinstance(python_object, datetime):

@@ -1,23 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-import os
-from datetime import datetime
-from hashlib import md5
 import json
-from PIL import Image
-from werkzeug.utils import secure_filename
-from flask import request, Blueprint, jsonify, redirect, url_for
-from flask import current_app as app
+
+from flask import request, Blueprint
 from bgradar.api.data import beautylbs_manager
 from bgradar.api.packet import ClientResults, ClientResult
-from bgradar.api.packet import ClientHotPoints
+from bgradar.api.packet import ClientHotPoints, ClientLBSData
 
 
 beauty_lbs = Blueprint('beauty_lbs', __name__)
 
 
 @beauty_lbs.route('/bglbs', methods=['POST', 'GET'])
-def user_profile():
+def lbs_profile():
     status_code = 200
     clientresults = ClientResults()
 
@@ -26,7 +21,10 @@ def user_profile():
         fbid = req_body['fbid']
         lat = req_body['lat']
         lng = req_body['lng']
-        beautylbs_manager.update_lbs(fbid, lng, lat)
+        uid = beautylbs_manager.update_lbs(fbid, lng, lat)
+        resp_body = {"uid": uid}
+
+        return json.dumps(resp_body), status_code
 
     elif request.method == 'GET':
         lng = float(request.args.get('lng', 0.0))
@@ -46,3 +44,22 @@ def user_profile():
             clientresults.results.append(client_hotpoints)
 
     return clientresults.to_json(), status_code
+
+
+@beauty_lbs.route('/bglbsdata/<uid>', methods=['GET'])
+def get_all_lbs_profile(uid=None):
+    status_code = 200
+    clientresults = ClientResults()
+    if uid:
+        bglbs_data = beautylbs_manager.find_by_fbid(uid)
+        if bglbs_data:
+            client_lbs_data = ClientLBSData()
+            client_lbs_data.uid = str(bglbs_data.get('_id', ''))
+            client_lbs_data.lng = bglbs_data['lng']
+            client_lbs_data.lat = bglbs_data['lat']
+            client_lbs_data.comment = bglbs_data.get('comment', '')
+
+        else:
+            return clientresults.to_json(), status_code
+    else:
+        bglbs_cursor = beautylbs_manager.find_all()

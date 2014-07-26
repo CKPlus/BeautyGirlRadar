@@ -24,8 +24,8 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
-@upload.route('/<fbid>/upload', methods=['GET', 'POST'])
-def upload_file(fbid):
+@upload.route('/<uid>/upload', methods=['GET', 'POST'])
+def upload_file(uid):
     if request.method == 'POST':
         clientresult = ClientResult()
         file = request.files['file']
@@ -47,7 +47,7 @@ def upload_file(fbid):
             im.save(path + ".thumb", 'PNG')
 
             # return redirect(url_for('uploaded_file', filename=filename))
-            beautylbs_manager.update_picurl(fbid, photo_id)
+            beautylbs_manager.update_picurl(uid, photo_id)
             return clientresult.to_json()
 
     return '''
