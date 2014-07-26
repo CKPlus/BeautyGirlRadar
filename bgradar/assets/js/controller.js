@@ -36,136 +36,127 @@ angular.module('bgradarApp.controllers', [])
 			});
 		}
 
+
+
 		
   	}])
-  .controller('RadarController', ['$scope', 'BGlbs',
-  	 function($scope, BGlbs) {
+  .controller('RadarController', ['$scope', 'BGlbs', '$timeout',
+  	 function($scope, BGlbs, $timeout) {
+  	 	google.maps.visualRefresh = true;
+  	 	var markerToClose = null;
+  	 	// var origCenter = {latitude: $scope.map.center.latitude, longitude: $scope.map.center.longitude};
   	 	var init = function(){
-
+  	 		$scope.selectedRecord = {}
+  	 		
   	 		BGlbs.list(function(data){
-  	 			$scope.markers = []
-
-  	 			console.log(data);
+  	 			var markers = [];
+  	 			
 				_.each(data.results, function (marker) {
 				  var obj = {
 				  	id : marker.uid,
 					latitude :marker.lat,
 					longitude :marker.lng,
 					title :'Test Record',
-					showWindow :false
+					showWindow :false,
+					comment: marker.comment,
+					fans_url: marker.fans_url,
+					picurl: marker.picurl
 				  }
-				  // marker.id = marker.uid
-				  // marker.latitude = marker.lat;
-				  // marker.longitude = marker.lng;
-				  // marker.title = 'Test Record';
-				  // marker.showWindow = false;
+				  
 			      obj.closeClick = function () {
-			        // marker.showWindow = false;
-			        // $scope.$apply();
+			        marker.showWindow = false;
+			        $scope.$apply();
 			      };
 			      obj.onClicked = function () {
-			        $scope.onMarkerClicked(marker);
+			        $scope.onMarkerClicked(obj);
 			      };
-			      $scope.markers.push(obj);
+			      markers.push(obj);
+			      
+			      
 			    });
-			 //    var markers = [
-			 //        {
-			 //          id: 1,
-			 //          latitude: 45,
-			 //          longitude: -74,
-			 //          showWindow: false,
-			 //          title: 'Marker 2',
-			 //        },
-			 //        {
-			 //          id: 2,
-			 //          latitude: 15,
-			 //          longitude: 30,
-			 //          showWindow: false,
-			 //          title: 'Marker 2'
-			 //        },
-			 //        {
-			 //          id: 3,
-			 //          latitude: 37,
-			 //          longitude: -122,
-			 //          showWindow: false,
-			 //          title: 'Plane'
-			 //        },
-			 //        {
-			 //          id: 4,
-			 //          latitude: 37,
-			 //          longitude: -122,
-			 //          showWindow: false,
-			 //          title: 'Plane'
-			 //        }
-				// ]
-
-				
-
+				$scope.map.dynamicMarkers = markers;
   	 		});
 
-var markers = [
-			        {
-			          id: 1,
-			          latitude: 45,
-			          longitude: -74,
-			          showWindow: false,
-			          title: 'Marker 2',
-			        },
-			        {
-			          id: 2,
-			          latitude: 15,
-			          longitude: 30,
-			          showWindow: false,
-			          title: 'Marker 2'
-			        },
-			        {
-			          id: 3,
-			          latitude: 37,
-			          longitude: -122,
-			          showWindow: false,
-			          title: 'Plane'
-			        },
-			        {
-			          id: 4,
-			          latitude: 37,
-			          longitude: -122,
-			          showWindow: false,
-			          title: 'Plane'
-			        }
-				]
-				
-		    	$scope.map = {
-				    'center': {
-				        latitude: 45,
-				        longitude: -73
-				    },
-				    'zoom': 14,
-				    'markers': markers
-				    
-				};
+	    	$scope.map = {
+			    center: {
+			      latitude: 25.041762,
+			      longitude: 121.549071
+			    },
+			    zoom: 15
+			};
 
+			// var dynamicMarkers = [
+   //    {   id: 1,
+   //      latitude: 46,
+   //      longitude: -79
+   //    },
+   //    {
+   //      id: 2,
+   //      latitude: 33,
+   //      longitude: -79
+   //    },
+   //    {
+   //      id: 3,
+   //      latitude: 35,
+   //      longitude: -127
+   //    }
+   //  ];
+   //  _.each(dynamicMarkers, function (marker) {
+   //    marker.closeClick = function () {
+   //      marker.showWindow = false;
+   //      $scope.$apply();
+   //    };
+   //    marker.onClicked = function () {
+   //      $scope.onMarkerClicked(marker);
+   //    };
+   //  });
+    // $scope.map.dynamicMarkers = dynamicMarkers;
 
-
-			// for(var i=0, l=$scope.map.markers.length; i<l; i+=1){
-			// 	var marker = $scope.map.markers[i]
-				
-
-			// 	marker.onClicked = function (marker){
-			// 		console.log(marker);
-			// 		// $scope.onMarkerClicked(marker);
-			// 	}
-			// }
 		}
+
+
+		$scope.refreshMap = function () {
+		    //optional param if you want to refresh you can pass null undefined or false or empty arg
+		    $scope.map.control.refresh({latitude: 25.041762, longitude: 121.549071});
+		    // $scope.map.control.getGMap().setZoom(11);
+		};
 
 		$scope.onMarkerClicked = function (marker) {
 			//    if (markerToClose) {
 			//      markerToClose.showWindow = false;
 			//    }
-			    markerToClose = marker; // for next go around
-			    marker.showWindow = true;
-			    $scope.$apply();
-			    //window.alert("Marker: lat: " + marker.latitude + ", lon: " + marker.longitude + " clicked!!")
+			
+			$scope.selectedRecord = marker;
+			$('#myModal').modal();
+
+			$scope.website = marker.fans_url;
+			$scope.comment = marker.comment;
+
+			// $scope.selectedRecord = selectedRecord;
+			// markerToClose = marker; // for next go around
+			// marker.showWindow = true;
+			$scope.$apply();
+		}
+
+		$scope.save = function(){
+			
+
+			var patchData = {
+				"_id": $scope.selectedRecord.id,
+				"comment": $scope.comment || '',
+  				"fans_url": $scope.website || ''
+			}
+
+			BGlbs.updateData(patchData, function(){
+				alert('感謝眾鄉民的工人智慧！');
+				$('#myModal').modal('toggle');
+				$scope.website = '';
+				$scope.comment = '';
+				init();
+			});
 		}
 
 		init();
+
+		// var origCenter = {latitude: $scope.map.center.latitude, longitude: $scope.map.center.longitude};
   	}])
