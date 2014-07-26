@@ -31,7 +31,7 @@ def user_profile():
     elif request.method == 'GET':
         lng = float(request.args.get('lng', 0.0))
         lat = float(request.args.get('lat', 0.0))
-        distance = request.args.get('dist', 2)
+        distance = float(request.args.get('dist', 2))
 
         # hot_points = beautylbs_manager.find_hot_points(121.234, 25.111, 2)
         hot_points = beautylbs_manager.find_hot_points(lng, lat, distance)
