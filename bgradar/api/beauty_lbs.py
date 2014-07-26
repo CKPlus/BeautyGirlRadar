@@ -52,16 +52,29 @@ def lbs_profile():
 def get_all_lbs_profile(uid=None):
     status_code = 200
     clientresults = ClientResults()
+
     if uid:
         bglbs_data = beautylbs_manager.find_by_fbid(uid)
         if bglbs_data:
             client_lbs_data = ClientLBSData()
-            client_lbs_data.uid = str(bglbs_data.get('_id', ''))
+            client_lbs_data.uid = str(bglbs_data['_id'])
             client_lbs_data.lng = bglbs_data['lng']
             client_lbs_data.lat = bglbs_data['lat']
             client_lbs_data.comment = bglbs_data.get('comment', '')
+            client_lbs_data.picurl = bglbs_data.get('picurl', '')
 
-        else:
-            return clientresults.to_json(), status_code
+            clientresults.results.append(client_lbs_data)
+
+        return clientresults.to_json(), status_code
     else:
         bglbs_cursor = beautylbs_manager.find_all()
+
+        for bglbs_data in bglbs_cursor:
+            client_lbs_data = ClientLBSData()
+            client_lbs_data.uid = str(bglbs_data['_id'])
+            client_lbs_data.lng = bglbs_data['lng']
+            client_lbs_data.lat = bglbs_data['lat']
+            client_lbs_data.comment = bglbs_data.get('comment', '')
+            client_lbs_data.picurl = bglbs_data.get('picurl', '')
+            clientresults.results.append(client_lbs_data)
+        return clientresults.to_json(), status_code
