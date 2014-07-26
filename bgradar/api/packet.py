@@ -18,7 +18,6 @@ class ClientLBSData(object):
         self.lng = 0.0
         self.lat = 0.0
         self.comment = ''
-        self.address = ''
         self.picurl = ''
 
 
@@ -69,8 +68,7 @@ def to_json(python_object):
             'lng': python_object.lng,
             'lat': python_object.lat,
             'comment': python_object.comment,
-            'address': python_object.address,
-            'picurls': python_object.picurls
+            'picurl': python_object.picurl
         }
 
     if isinstance(python_object, datetime):
