@@ -99,8 +99,8 @@ class BeautyLBSManager():
         hot_points = {}
 
         for lbs_data in lbs_cursor:
-            lng_tmp = float('%.3f' % lbs_data['lng'])
-            lat_tmp = float('%.3f' % lbs_data['lat'])
+            lng_tmp = float('%.4f' % lbs_data['lng'])
+            lat_tmp = float('%.4f' % lbs_data['lat'])
 
             hot_point = (lng_tmp, lat_tmp)
 

@@ -49,7 +49,7 @@ def lbs_profile():
 
 @beauty_lbs.route('/bglbsdata', methods=['GET'])
 @beauty_lbs.route('/bglbsdata/<uid>', methods=['GET', 'PATCH'])
-def get_all_lbs_profile(uid=None):
+def lbs_profile_process(uid=None):
     status_code = 200
     clientresults = ClientResults()
 
@@ -86,5 +86,3 @@ def get_all_lbs_profile(uid=None):
             client_lbs_data.picurl = bglbs_data.get('picurl', '')
             clientresults.results.append(client_lbs_data)
         return clientresults.to_json(), status_code
-
-
