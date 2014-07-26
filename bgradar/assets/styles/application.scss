@@ -1,0 +1,160 @@
+//= Imports
+// @import "compass/typography/text/replacement";
+// @import "compass/utilities/general/clearfix";
+// @import "compass/css3/border-radius";
+// @import "compass/css3/box-sizing";
+
+
+//= Third-party
+// @import "font-awesome";
+
+// colors
+$navbar_bg_color: #31c0be;
+$user_panel_text_color: #fff;
+$header_dark_bg_color: #31c0be;
+
+.sidebar {
+	position: fixed;
+	top: 51px;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	display: block;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: #242633 ;
+	border-right: 1px solid #EEE;
+
+	.nav a{
+		color: #fff;
+	}
+	.nav :hover{
+		color: #fff;
+	}
+}
+
+.main {
+	padding: 20px;
+}
+
+.placeholder img {
+	display: inline-block;
+	border-radius: 50%;
+	border: 3px solid #34CEC1;
+}
+
+.navbar {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+
+  .container-fluid{
+  	background-color: #31C0BE;
+  }
+  .navbar-brand {
+  	color: #FFF;
+  }
+}
+
+.header {
+  padding: 0 !important;
+  margin: 0 !important;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  min-height: 60px;
+
+  .navbar-inner {
+    background-image: none !important;
+    background-color: $navbar_bg_color !important;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+    display: table;
+    min-height: 60px;
+
+    [class*=span] {
+      min-height: 58px !important;
+    }
+  }
+
+  .header-seperation {
+    width: 280px;
+    display: block;
+    float: left;
+    height: 60px;
+
+    i {
+      color: #fff;
+      font-size: 18px;
+      top: -6px;
+    }
+  }
+
+  
+
+  a {
+    text-decoration: none;
+  }
+
+  .user-panel {
+    position: relative;
+    top: 18px;
+    margin-right: 20px;
+    display: inline-block;
+    float: left;
+    min-width: 163px;
+
+    .user-info {
+      line-height: 30px;
+      margin-top: -5px;
+
+      img {
+        border-radius: 50%;
+        border: 2px solid #249E8A;
+      }
+    }
+
+    a {
+      color: $user_panel_text_color;
+      font-size: 15px;
+    }
+  }
+
+  .dropdown-menu a {
+    color: #000;
+  }
+
+  .notification {
+    width: 60px;
+    height: 60px;
+    border-left: 1px solid #249E8A;
+
+    a {
+      i {
+        font-size: 26px;
+        color: #fff;
+        margin: 15px 22px;
+        display: block;
+        position: relative;
+      }
+
+      .number {
+        position: absolute;
+        font-size: 12px;
+        color: #fff;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        background-color: #ff0000;
+        text-align: center;
+        top: 12px;
+        left: 17px;
+      }
+    }
+  }
+}
