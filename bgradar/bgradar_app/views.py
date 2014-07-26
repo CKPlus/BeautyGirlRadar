@@ -1,6 +1,8 @@
 #!/usr/bin/evn python
 # -*- coding: UTF-8 -*-
-from bgradar.app import blueprint_bgradar
+from flask import render_template
+
+from . import blueprint_bgradar
 
 
 @blueprint_bgradar.route('/', methods=['GET'])

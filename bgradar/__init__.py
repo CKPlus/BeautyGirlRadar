@@ -25,7 +25,7 @@ app = create_app()
 # from bgradar.api.index import index
 # app.register_blueprint(index, url_prefix='/api')
 
-from bgradar.app import blueprint_bgradar
+from bgradar.bgradar_app import blueprint_bgradar
 app.register_blueprint(blueprint_bgradar, url_prefix='/bgradar')
 
 
