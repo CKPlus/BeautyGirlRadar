@@ -6,9 +6,12 @@ from bgradar.api.data import close_error_connection
 from bgradar.api.data import user_manager
 from bgradar.api.data import beautylbs_manager
 
+UPLOAD_FOLDER = '/path/to/the/uploads'
+
 
 def create_app():
     app = Flask(__name__)
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     return app
 
 app = create_app()
