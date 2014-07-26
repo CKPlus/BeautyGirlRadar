@@ -82,6 +82,10 @@ class BeautyLBSManager():
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
         return collection.find({})
 
+    def find_50(self):
+        collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
+        return collection.find({'picurl': {'$ne': ''}}, limit=50)
+
     def find_by_fbid(self, obj_id):
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
         return collection.find_one({'_id': ObjectId(obj_id)})

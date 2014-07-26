@@ -102,3 +102,30 @@ def lbs_profile_process(uid=None):
             client_lbs_data.address = address
             clientresults.results.append(client_lbs_data)
         return clientresults.to_json(), status_code
+
+
+@beauty_lbs.route('/bglbsdata50', methods=['GET'])
+def lbs_profile_process50(uid=None):
+    status_code = 200
+    clientresults = ClientResults()
+
+    bglbs_cursor = beautylbs_manager.find_50()
+
+    for bglbs_data in bglbs_cursor:
+        client_lbs_data = ClientLBSData()
+        client_lbs_data.uid = str(bglbs_data['_id'])
+        client_lbs_data.lng = bglbs_data['lng']
+        client_lbs_data.lat = bglbs_data['lat']
+        client_lbs_data.comment = bglbs_data.get('comment', '')
+        client_lbs_data.fans_url = bglbs_data.get('fans_url', '')
+        client_lbs_data.picurl = bglbs_data.get('picurl', '')
+
+        address = bglbs_data.get('address', '')
+
+        if address == '':
+            address = google_api.get_address_by_lnglat(bglbs_data['lng'], bglbs_data['lat'])
+            beautylbs_manager.update_address(str(bglbs_data['_id']), address)
+
+        client_lbs_data.address = address
+        clientresults.results.append(client_lbs_data)
+    return clientresults.to_json(), status_code
