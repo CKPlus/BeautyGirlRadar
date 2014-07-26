@@ -58,11 +58,13 @@ def deploy():
     print(green("Deploy Started..."))
     # first_install()
     # apt_get_install()
-    if files.exists(app_path):
-        run('rm -rf ' + app_path)
 
-    with cd('/var/www'):
-        run('sudo git clone https://github.com/wesgt/BeautyGirlRadar.git')
+    # if files.exists(app_path):
+    #     run('rm -rf ' + app_path)
+
+    with cd('/var/www/BeautyGirlRadar'):
+        # run('sudo git clone https://github.com/wesgt/BeautyGirlRadar.git')
+        run('sudo git pull')
     # run('git clone git@github.com:wesgt/BeautyGirlRadar.git')
 
     # create_env(env_name)

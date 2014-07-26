@@ -4,7 +4,6 @@ from bson.objectid import ObjectId
 from pymongo import MongoClient
 from datetime import datetime
 from pymongo import GEO2D
-from . import google_api
 
 dbname_bgradar = 'bg_radar'
 c_name_beautylbs = 'beauty_lbs'
