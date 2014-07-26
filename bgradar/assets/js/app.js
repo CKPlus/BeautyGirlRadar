@@ -1,6 +1,8 @@
 var bgradarApp = angular.module('bgradarApp',
 	['ngRoute',
-   'ngResource', 
+   'ngResource',
+   'google-maps',
+   'mgcrea.ngStrap',
    // 'pascalprecht.translate', 
    // 'ngDialog', 
    // 'mgcrea.ngStrap.datepicker',
@@ -15,7 +17,11 @@ bgradarApp.config(function($routeProvider, $locationProvider) {
 		.when('/bgradar', {
 			templateUrl: '/static/partials/wall.html',
 			controller: 'WallController'
-		});
+		})
+    .when('/bgradar/map', {
+      templateUrl: '/static/partials/map.html',
+      controller: 'RadarController'
+    });
 
 		$locationProvider.html5Mode(true);
 
@@ -26,8 +32,19 @@ bgradarApp.config(function($routeProvider, $locationProvider) {
 
 bgradarApp.config(['$resourceProvider', function ($resourceProvider) {
        // Don't strip trailing slashes from calculated URLs
-       $resourceProvider.defaults.stripTrailingSlashes = false;
+       // $resourceProvider.defaults.stripTrailingSlashes = false;
      }]);
+
+bgradarApp.factory('BGlbs', ['$resource', function($resource) {
+   return $resource('/api/bglbsdata/:_id',
+        {
+          '_id' : '@_id'
+        },
+        {
+           'list' : { method:'GET' },
+           'updateData' : { method:'PATCH' }
+        });
+    }]);
 
 /*
 bgradarApp.config(['$datepickerProvider', function($datepickerProvider) {
@@ -179,3 +196,4 @@ bgradarApp.factory('asyncLoader', function ($http, $q, $timeout) {
   };
 });
 */
+

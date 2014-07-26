@@ -1,3 +1,5 @@
+<h1 class="page-header">正咩雷達</h1>
+
 <!-- Modal -->
 <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -39,24 +41,20 @@
   </div>
 </div>
 
-<h1 class="page-header">Wall</h1>
+<google-map center="map.center" zoom="map.zoom" draggable="true">
 
-<div class="row placeholders">
-    <div class="col-xs-6 col-sm-3 placeholder" ng-repeat="record in records">
+	<markers models="map.dynamicMarkers" coords="'self'" icon="'icon'" click="'onClicked'" fit='true' doCluster="true" clusterEvents="clusterEvents">
+	    <windows show="true" closeClick="'closeClick'" coords="'self'"  >
+            <div ng-non-bindable >
+            	<p>野生正咩的出沒地!</p>
+            	
+				<!-- <img  alt="200x200" src="http://img3.douban.com/img/celebrity/large/1366461504.01.jpg" style="max-width: 100%;
+				max-height: 100%;width: auto;
+				height: auto;"> -->
+			</div>
 
-      <img ng-if="record.picurl != ''" data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/" ng-click="showModal(record)" ng-src="http://54.92.113.106:5000/static/uploads/{{record.picurl}}.thumb">
-      
-
-      <img ng-if="record.picurl == ''" data-src="holder.js/300x300/auto/sky" class="img-responsive" alt="300x300" src="http://fakeimg.pl/300x300/" ng-click="showModal(record)" ng-src="/static/assets/images/thumb.jpg">
-      <h4 ng-if="record.fans_url != ''"><a href="{{record.fans_url}}" target="_blank">野生的正咩</a></h4>
-      <h4 ng-if="record.fans_url == ''">野生的正咩</h4>
-
-      <span class="text-muted" ng-if="record.comment == ''">有請神龍</span>
-      <span class="text-muted" ng-if="record.comment != ''">{{record.comment}}</span>
-    </div>
-
-
-
-
-</div>
-
+            <!-- <p ng-non-bindable>This is an info window atThis is an info window atThis is an info window atThis is an info window at!</p> -->
+            <!-- <img ng-non-bindable data-src="holder.js/200x200/auto/sky" alt="200x200" src="http://fakeimg.pl/480x320/"> -->
+        </windows>
+	</markers>
+</google-map>

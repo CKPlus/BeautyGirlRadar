@@ -67,6 +67,7 @@ def lbs_profile_process(uid=None):
 
                 clientresults.results.append(client_lbs_data)
         else:
+            print request.data
             req_body = json.loads(request.data)
             comment = req_body['comment']
             fans_url = req_body['fans_url']
