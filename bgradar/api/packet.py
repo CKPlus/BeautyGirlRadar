@@ -69,7 +69,7 @@ def to_json(python_object):
             'lng': python_object.lng,
             'lat': python_object.lat,
             'comment': python_object.comment,
-            'fans_url': python_object.fans_url
+            'fans_url': python_object.fans_url,
             'picurl': python_object.picurl
         }
 
