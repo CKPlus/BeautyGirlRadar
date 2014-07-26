@@ -20,6 +20,7 @@ class ClientLBSData(object):
         self.comment = ''
         self.fans_url = ''
         self.picurl = ''
+        self.address = ''
 
 
 class ClientResults(object):
@@ -70,7 +71,8 @@ def to_json(python_object):
             'lat': python_object.lat,
             'comment': python_object.comment,
             'fans_url': python_object.fans_url,
-            'picurl': python_object.picurl
+            'picurl': python_object.picurl,
+            'address': python_object.address
         }
 
     if isinstance(python_object, datetime):
