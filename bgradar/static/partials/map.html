@@ -1,3 +1,19 @@
 <h1 class="page-header">正咩雷達</h1>
 
-<google-map center="map.center" zoom="map.zoom"></google-map>
+<google-map center="map.center" zoom="map.zoom" draggable="true">
+
+	<markers models="map.markers" coords="'self'" icon="'icon'" click="'onClicked'" fit='true' doCluster="true" clusterEvents="clusterEvents">
+	    <windows show="'showWindow'" closeClick="'closeClick'"  ng-cloak>
+            <div ng-non-bindable >
+            	<p>野生正咩的出沒地!</p>
+            	<img  alt="200x200" src="http://img3.douban.com/img/celebrity/large/1366461504.01.jpg" style="height:300px;width:300px;">
+				<!-- <img  alt="200x200" src="http://img3.douban.com/img/celebrity/large/1366461504.01.jpg" style="max-width: 100%;
+				max-height: 100%;width: auto;
+				height: auto;"> -->
+			</div>
+
+            <!-- <p ng-non-bindable>This is an info window atThis is an info window atThis is an info window atThis is an info window at!</p> -->
+            <!-- <img ng-non-bindable data-src="holder.js/200x200/auto/sky" alt="200x200" src="http://fakeimg.pl/480x320/"> -->
+        </windows>
+	</markers>
+</google-map>

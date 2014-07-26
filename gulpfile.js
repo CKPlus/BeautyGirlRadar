@@ -28,7 +28,7 @@ gulp.task('styles', function () {
         css: 'bgradar/static/assets/styles',
         sass: 'bgradar/assets/styles',
         // image: 'bgradar/static/assets/images',
-        // font: 'bgradar/static/assets/fonts',
+        font: 'bgradar/static/assets/fonts',
         import_path: [
             // 'bower_components/bootstrap-sass-official/vendor/assets/stylesheets',
             // 'bower_components/components-font-awesome/scss'
@@ -47,13 +47,14 @@ gulp.task('vendor-js', function() {
                     'bower_components/angular-resource/angular-resource.js',
                     'bower_components/angular-route/angular-route.js',
                     'bower_components/angular-strap/dist/angular-strap.js',
-                    'bower_components/angular-strap/dist/modules/datepicker.tpl.js',
+                    // 'bower_components/angular-strap/dist/modules/datepicker.tpl.js',
                     'bower_components/angular-translate/angular-translate.js',
                     'bower_components/angular-ui/angular-ui.js',
                     'bower_components/ngDialog/js/ngDialog.js',
                     'bower_components/mousetrap/mousetrap.js',
                     'bower_components/lodash/dist/lodash.underscore.js',
-                    'bower_components/angular-google-maps/dist/angular-google-maps.js'
+                    'bower_components/angular-google-maps/dist/angular-google-maps.js',
+                    'bower_components/angular-strap/dist/angular-strap.tpl.min.js',
                     // 'bgradar/assets/js/utils/utils-module.js',
                     // 'bgradar/assets/js/utils/ui-bootstrap-tpls-0.11.0.min.js'
                   ])

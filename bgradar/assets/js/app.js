@@ -32,8 +32,19 @@ bgradarApp.config(function($routeProvider, $locationProvider) {
 
 bgradarApp.config(['$resourceProvider', function ($resourceProvider) {
        // Don't strip trailing slashes from calculated URLs
-       $resourceProvider.defaults.stripTrailingSlashes = false;
+       // $resourceProvider.defaults.stripTrailingSlashes = false;
      }]);
+
+bgradarApp.factory('BGlbs', ['$resource', function($resource) {
+   return $resource('/api/bglbsdata/:_id',
+        {
+          '_id' : '@_id'
+        },
+        {
+           'list' : { method:'GET' },
+           'updateData' : { method:'PATCH' }
+        });
+    }]);
 
 /*
 bgradarApp.config(['$datepickerProvider', function($datepickerProvider) {

@@ -8,3 +8,7 @@ from . import blueprint_bgradar
 @blueprint_bgradar.route('/', methods=['GET'])
 def index_page():
     return render_template('/index.html')
+
+@blueprint_bgradar.route('/map', methods=['GET'])
+def map_page():
+    return render_template('/index.html')

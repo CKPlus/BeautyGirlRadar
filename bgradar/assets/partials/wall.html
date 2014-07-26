@@ -1,41 +1,62 @@
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">我愛看正咩</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-8">
+            <!-- <img  alt="200x200"  width="100%" height="480" src="http://54.92.113.106:5000/static/uploads/{{selectedRecord.picurl}}.thumb"> -->
+            <img ng-if="selectedRecord.picurl != ''" style="height: 400px;width: 400px;margin: 0 auto;" data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/" ng-click="showModal(record)" ng-src="http://54.92.113.106:5000/static/uploads/{{selectedRecord.picurl}}">
+      
+
+            <img ng-if="selectedRecord.picurl == ''" data-src="holder.js/300x300/auto/sky" class="img-responsive" alt="300x300" src="http://fakeimg.pl/300x300/" ng-click="showModal(record)" ng-src="/static/assets/images/thumb.jpg" style="height: 400px;width: 400px;margin: 0 auto;">
+          </div>
+          <div class="col-md-4">
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">臉書</label>
+                <input type="text" class="form-control" ng-model="website">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">備註</label>
+                <textarea class="form-control" rows="3" ng-model="comment"></textarea>
+              </div>
+              
+            </form>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">辨識不能</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">有請神龍</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <h1 class="page-header">Wall</h1>
 
 <div class="row placeholders">
-    <div class="col-xs-6 col-sm-3 placeholder">
-      <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/">
-      <h4>出沒地點</h4>
-      <span class="text-muted">描述</span>
+    <div class="col-xs-6 col-sm-3 placeholder" ng-repeat="record in records">
+
+      <img ng-if="record.picurl != ''" data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/" ng-click="showModal(record)" ng-src="http://54.92.113.106:5000/static/uploads/{{record.picurl}}.thumb">
+      
+
+      <img ng-if="record.picurl == ''" data-src="holder.js/300x300/auto/sky" class="img-responsive" alt="300x300" src="http://fakeimg.pl/300x300/" ng-click="showModal(record)" ng-src="/static/assets/images/thumb.jpg">
+      <h4 ng-if="record.fans_url != ''"><a href="{{record.fans_url}}" target="_blank">野生的正咩</a></h4>
+      <h4 ng-if="record.fans_url == ''">野生的正咩</h4>
+
+      <span class="text-muted" ng-if="record.comment == ''">有請神龍</span>
+      <span class="text-muted" ng-if="record.comment != ''">{{record.comment}}</span>
     </div>
-    <div class="col-xs-6 col-sm-3 placeholder">
-      <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/">
-      <h4>出沒地點</h4>
-      <span class="text-muted">描述</span>
-    </div>
-    <div class="col-xs-6 col-sm-3 placeholder">
-      <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/">
-      <h4>出沒地點</h4>
-      <span class="text-muted">描述</span>
-    </div>
-    <div class="col-xs-6 col-sm-3 placeholder">
-      <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/">
-      <h4>出沒地點</h4>
-      <span class="text-muted">描述</span>
-    </div>
-    <div class="col-xs-6 col-sm-3 placeholder">
-      <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/">
-      <h4>出沒地點</h4>
-      <span class="text-muted">描述</span>
-    </div>
-    <div class="col-xs-6 col-sm-3 placeholder">
-      <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/">
-      <h4>出沒地點</h4>
-      <span class="text-muted">描述</span>
-    </div>
-    <div class="col-xs-6 col-sm-3 placeholder">
-      <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/">
-      <h4>出沒地點</h4>
-      <span class="text-muted">描述</span>
-    </div>
+
+
+
 
 </div>
 

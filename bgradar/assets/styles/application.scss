@@ -6,7 +6,7 @@
 
 @import "compass/css3/transition";
 
-//= Third-party
+// Third-party
 // @import "font-awesome";
 
 // colors
@@ -49,6 +49,8 @@ $header_dark_bg_color: #31c0be;
 	border-radius: 50%;
 	border: 3px solid #34CEC1;
   cursor: pointer;
+  width: 300px;
+  height: 300px;
   // @include transition-property(width);
   // @include transition-duration(2s);
   // @include transition-timing-function(ease-in);
@@ -73,6 +75,18 @@ $header_dark_bg_color: #31c0be;
   }
   .navbar-brand {
   	color: #FFF;
+    // background-image: url(/static/assets/images/logo.png);
+    // background-repeat: no-repeat;
+  }
+  .logo {
+    width: 58px;
+    height: 58px;
+    background-image: url(/static/assets/images/logo.png);
+    background-repeat: no-repeat;
+    background-size:80%;
+    // border-radius:50%;
+    display: inline-block;
+    vertical-align: middle;
   }
 }
 
