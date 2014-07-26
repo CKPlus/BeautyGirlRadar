@@ -48,22 +48,29 @@ def lbs_profile():
 
 
 @beauty_lbs.route('/bglbsdata', methods=['GET'])
-@beauty_lbs.route('/bglbsdata/<uid>', methods=['GET'])
+@beauty_lbs.route('/bglbsdata/<uid>', methods=['GET', 'PATCH'])
 def get_all_lbs_profile(uid=None):
     status_code = 200
     clientresults = ClientResults()
 
     if uid:
-        bglbs_data = beautylbs_manager.find_by_fbid(uid)
-        if bglbs_data:
-            client_lbs_data = ClientLBSData()
-            client_lbs_data.uid = str(bglbs_data['_id'])
-            client_lbs_data.lng = bglbs_data['lng']
-            client_lbs_data.lat = bglbs_data['lat']
-            client_lbs_data.comment = bglbs_data.get('comment', '')
-            client_lbs_data.picurl = bglbs_data.get('picurl', '')
+        if request.method == 'GET':
+            bglbs_data = beautylbs_manager.find_by_fbid(uid)
+            if bglbs_data:
+                client_lbs_data = ClientLBSData()
+                client_lbs_data.uid = str(bglbs_data['_id'])
+                client_lbs_data.lng = bglbs_data['lng']
+                client_lbs_data.lat = bglbs_data['lat']
+                client_lbs_data.comment = bglbs_data.get('comment', '')
+                client_lbs_data.fans_url = bglbs_data.get('fans_url', '')
+                client_lbs_data.picurl = bglbs_data.get('picurl', '')
 
-            clientresults.results.append(client_lbs_data)
+                clientresults.results.append(client_lbs_data)
+        else:
+            req_body = json.loads(request.data)
+            comment = req_body['comment']
+            fans_url = req_body['fans_url']
+            beautylbs_manager.update_comment_fans(comment, fans_url)
 
         return clientresults.to_json(), status_code
     else:
@@ -75,6 +82,7 @@ def get_all_lbs_profile(uid=None):
             client_lbs_data.lng = bglbs_data['lng']
             client_lbs_data.lat = bglbs_data['lat']
             client_lbs_data.comment = bglbs_data.get('comment', '')
+            client_lbs_data.fans_url = bglbs_data.get('fans_url', '')
             client_lbs_data.picurl = bglbs_data.get('picurl', '')
             clientresults.results.append(client_lbs_data)
         return clientresults.to_json(), status_code
