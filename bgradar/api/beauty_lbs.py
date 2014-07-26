@@ -17,6 +17,7 @@ def lbs_profile():
     clientresults = ClientResults()
 
     if request.method == 'POST':
+        print request.data
         req_body = json.loads(request.data)
         fbid = req_body['fbid']
         lat = req_body['lat']
@@ -46,6 +47,7 @@ def lbs_profile():
     return clientresults.to_json(), status_code
 
 
+@beauty_lbs.route('/bglbsdata', methods=['GET'])
 @beauty_lbs.route('/bglbsdata/<uid>', methods=['GET'])
 def get_all_lbs_profile(uid=None):
     status_code = 200
