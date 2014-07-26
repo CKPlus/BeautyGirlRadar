@@ -65,8 +65,13 @@ def lbs_profile_process(uid=None):
                 client_lbs_data.comment = bglbs_data.get('comment', '')
                 client_lbs_data.fans_url = bglbs_data.get('fans_url', '')
                 client_lbs_data.picurl = bglbs_data.get('picurl', '')
-                client_lbs_data.address = google_api.get_address_by_lnglat(bglbs_data['lng'], bglbs_data['lat'])
+                address = bglbs_data.get('address', '')
 
+                if address == '':
+                    address = google_api.get_address_by_lnglat(bglbs_data['lng'], bglbs_data['lat'])
+                    beautylbs_manager.update_address(str(bglbs_data['_id']), address)
+
+                client_lbs_data.address = address
                 clientresults.results.append(client_lbs_data)
         else:
             print request.data
@@ -87,6 +92,13 @@ def lbs_profile_process(uid=None):
             client_lbs_data.comment = bglbs_data.get('comment', '')
             client_lbs_data.fans_url = bglbs_data.get('fans_url', '')
             client_lbs_data.picurl = bglbs_data.get('picurl', '')
-            client_lbs_data.address = google_api.get_address_by_lnglat(bglbs_data['lng'], bglbs_data['lat'])
+
+            address = bglbs_data.get('address', '')
+
+            if address == '':
+                address = google_api.get_address_by_lnglat(bglbs_data['lng'], bglbs_data['lat'])
+                beautylbs_manager.update_address(str(bglbs_data['_id']), address)
+
+            client_lbs_data.address = address
             clientresults.results.append(client_lbs_data)
         return clientresults.to_json(), status_code

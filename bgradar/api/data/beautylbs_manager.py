@@ -15,6 +15,17 @@ class BeautyLBSManager():
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
         collection.ensure_index([('locs', GEO2D)])
 
+    def update_address(self, uid, address):
+        collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
+        collection.update(
+            {'_id': ObjectId(uid)},
+            {
+                '$set': {
+                    'address': address,
+                    'utime': datetime.utcnow()
+                }
+            })
+
     def update_picurl(self, uid, pic_url):
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
         collection.update(

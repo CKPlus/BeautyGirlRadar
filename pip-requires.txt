@@ -4,3 +4,4 @@ pymongo==2.6.2
 pillow
 python-dateutil==2.2
 uwsgi
+urllib3
