@@ -105,7 +105,7 @@ class BeautyLBSManager():
                 new_picurls = hot_profile['picurls']
 
                 if len(lbs_data['picurl']) > 0:
-                    new_picurls = new_picurls.append(lbs_data['picurl'])
+                    new_picurls.append(lbs_data['picurl'])
 
                 hot_profile['count'] = new_count
                 hot_profile['picurls'] = new_picurls
