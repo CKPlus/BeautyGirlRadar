@@ -13,12 +13,23 @@ class BeautyLBSManager():
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
         collection.ensure_index([('locs', GEO2D)])
 
-    def update_lbs(self, fbid, lng, lat, pic_url):
+    def update_picurl(self, fbid, pic_url):
+        collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
+        collection.update(
+            {'fbid': fbid},
+            {
+                '$set': {
+                    'picurl': pic_url,
+                    'utime': datetime.utcnow()
+                }
+            })
+
+    def update_lbs(self, fbid, lng, lat):
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
         collection.insert({
             'fbid': fbid,
             'locs': [lng, lat],
-            'picurl': pic_url,
+            'picurl': '',
             'ctime': datetime.utcnow()
             })
 

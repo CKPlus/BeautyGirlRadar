@@ -32,6 +32,7 @@ def apt_get_install():
     run('sudo apt-get update')
     run('sudo apt-get install mongodb-org')
     run('sudo apt-get install git')
+    run('sudo apt-get install python-dev')
     print(green("apt-get Install end..."))
 
 
