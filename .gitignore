@@ -1,0 +1,64 @@
+*.py[cod]
+env/
+venv/
+cta/uploads/console/*.*
+*~
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+__pycache__
+
+# Installer logs
+pip-log.txt
+
+# WebAssets
+cta/static/.webassets-cache/
+cta/static/.sass-cache/
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Mac
+.DS_Store
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# Bower
+bower_components
+
+# Gulp.js
+node_modules
+npm-debug.log
+
+# Sass
+.sass-cache
+
+#Pycharm
+.idea
