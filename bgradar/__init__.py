@@ -22,24 +22,19 @@ def create_app():
 
 app = create_app()
 
-# from webapi.index import index
-# app.register_blueprint(index, url_prefix='/bgradar')
+from bgradar.api import index
+app.register_blueprint(index, url_prefix='/api')
+
+from bgradar.app import bgradar
+app.register_blueprint(index, url_prefix='/bgradar')
 
 
-# @app.route('/hello')
-# def hello():
-#     return render_template('index.html')
-
-@app.route('/hello/')
-@app.route('/hello/<name>')
-def hello(name=None):
-    return render_template('hello.html', name=name)
 
 
-@app.errorhandler(Exception)
-def handle_error(error):
-    # close_error_connection()
-    return json.dumps({"error": str(error.message)}), 500
+# @app.errorhandler(Exception)
+# def handle_error(error):
+#     # close_error_connection()
+#     return json.dumps({"error": str(error.message)}), 500
 
 
 @app.route('/bgradarapi/test')
