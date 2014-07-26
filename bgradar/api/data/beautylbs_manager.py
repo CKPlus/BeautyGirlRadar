@@ -31,7 +31,6 @@ class BeautyLBSManager():
         if picurl is None:
             picurl = ''
 
-        address = google_api.get_address_by_lnglat(lng, lat)
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
 
         if comment is None:
@@ -47,7 +46,6 @@ class BeautyLBSManager():
             'lat': lat,
             'picurl': picurl,
             'comment': comment,
-            'address': address,
             'ctime': datetime.utcnow()
             })
 
