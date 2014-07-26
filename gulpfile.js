@@ -52,6 +52,8 @@ gulp.task('vendor-js', function() {
                     'bower_components/angular-ui/angular-ui.js',
                     'bower_components/ngDialog/js/ngDialog.js',
                     'bower_components/mousetrap/mousetrap.js',
+                    'bower_components/lodash/dist/lodash.underscore.js',
+                    'bower_components/angular-google-maps/dist/angular-google-maps.js'
                     // 'bgradar/assets/js/utils/utils-module.js',
                     // 'bgradar/assets/js/utils/ui-bootstrap-tpls-0.11.0.min.js'
                   ])

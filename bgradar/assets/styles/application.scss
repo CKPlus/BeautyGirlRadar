@@ -4,6 +4,7 @@
 // @import "compass/css3/border-radius";
 // @import "compass/css3/box-sizing";
 
+@import "compass/css3/transition";
 
 //= Third-party
 // @import "font-awesome";
@@ -25,11 +26,17 @@ $header_dark_bg_color: #31c0be;
 	background-color: #242633 ;
 	border-right: 1px solid #EEE;
 
+  .nav-sidebar {
+    margin-right: -21px;
+    margin-bottom: 20px;
+    margin-left: -20px;
+  }
+
 	.nav a{
 		color: #fff;
 	}
 	.nav :hover{
-		color: #fff;
+		background-color: #308382;;
 	}
 }
 
@@ -41,12 +48,24 @@ $header_dark_bg_color: #31c0be;
 	display: inline-block;
 	border-radius: 50%;
 	border: 3px solid #34CEC1;
+  cursor: pointer;
+  // @include transition-property(width);
+  // @include transition-duration(2s);
+  // @include transition-timing-function(ease-in);
+}
+
+// .placeholder img:hover{
+//   width: 300px;
+// }
+
+.placeholder {
+  margin-bottom: 20px;
 }
 
 .navbar {
   background-color: transparent;
   background-image: none;
-  border: none;
+  border-bottom: 1px solid #A7A7A7;
   border-radius: 0;
 
   .container-fluid{
@@ -158,3 +177,5 @@ $header_dark_bg_color: #31c0be;
     }
   }
 }
+
+.angular-google-map-container { height: 400px; }

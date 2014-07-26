@@ -10,7 +10,7 @@
     <!-- <link rel="icon" href="../../favicon.ico"> -->
 
     <title>正咩雷達</title>
-
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 
 
     <link rel="stylesheet" href="/static/assets/styles/vendor-css.min.css">
@@ -19,6 +19,7 @@
     <script src="/static/assets/js/vendor.min.js"></script>
     <script src="/static/assets/js/app.js"></script>
     <script src="/static/assets/js/controller.js"></script>
+
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -42,9 +43,9 @@
           <a class="navbar-brand" href="#">正咩雷達</a>
         </div>
         <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
+          <!-- <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
-          </form>
+          </form> -->
         </div>
       </div>
     </div>
@@ -53,7 +54,8 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Wall</a></li>
+            <li class="active"><a href="/bgradar">Wall</a></li>
+            <li><a href="/bgradar/map">Radar</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
@@ -63,6 +65,8 @@
         </div>
       </div>
     </div>
+
+    
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

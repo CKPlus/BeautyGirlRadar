@@ -1,6 +1,8 @@
 var bgradarApp = angular.module('bgradarApp',
 	['ngRoute',
-   'ngResource', 
+   'ngResource',
+   'google-maps',
+   'mgcrea.ngStrap',
    // 'pascalprecht.translate', 
    // 'ngDialog', 
    // 'mgcrea.ngStrap.datepicker',
@@ -15,7 +17,11 @@ bgradarApp.config(function($routeProvider, $locationProvider) {
 		.when('/bgradar', {
 			templateUrl: '/static/partials/wall.html',
 			controller: 'WallController'
-		});
+		})
+    .when('/bgradar/map', {
+      templateUrl: '/static/partials/map.html',
+      controller: 'RadarController'
+    });
 
 		$locationProvider.html5Mode(true);
 
@@ -179,3 +185,4 @@ bgradarApp.factory('asyncLoader', function ($http, $q, $timeout) {
   };
 });
 */
+
