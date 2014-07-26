@@ -6,7 +6,7 @@ from bgradar.api.data import close_error_connection
 from bgradar.api.data import user_manager
 from bgradar.api.data import beautylbs_manager
 
-UPLOAD_FOLDER = 'uploads/'
+UPLOAD_FOLDER = 'bgradar/static/uploads/'
 
 
 def create_app():
@@ -21,6 +21,9 @@ app.register_blueprint(user, url_prefix='/api')
 
 from bgradar.api.beauty_lbs import beauty_lbs
 app.register_blueprint(beauty_lbs, url_prefix='/api')
+
+from bgradar.api.upload import upload
+app.register_blueprint(upload, url_prefix='/api')
 
 from bgradar.bgradar_app import blueprint_bgradar
 app.register_blueprint(blueprint_bgradar, url_prefix='/bgradar')
