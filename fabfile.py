@@ -27,12 +27,11 @@ def first_install():
 
 def apt_get_install():
     print(green("apt-get Install Started..."))
-    # run('sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10')
-    # run("echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list")
-    # run('sudo apt-get update')
-    # run('sudo apt-get install mongodb-org')
+    run('sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10')
+    run("echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list")
+    run('sudo apt-get update')
+    run('sudo apt-get install mongodb-org')
     run('sudo apt-get install git')
-    # run('sudo service mongod start')
     print(green("apt-get Install end..."))
 
 
@@ -41,7 +40,7 @@ def create_env(env_name):
 
     with prefix('WORKON_HOME=' + env_base_path):
         with prefix('source /usr/local/bin/virtualenvwrapper.sh'):
-            if files.exists(env_base_path + env_name):
+            if files.exists(env_base_path + '/' + env_name):
                 run('rmvirtualenv ' + env_name)
 
             run('mkvirtualenv ' + env_name)
