@@ -6,7 +6,7 @@ from bgradar.api.data import close_error_connection
 from bgradar.api.data import user_manager
 from bgradar.api.data import beautylbs_manager
 
-UPLOAD_FOLDER = '/path/to/the/uploads'
+UPLOAD_FOLDER = 'uploads/'
 
 
 def create_app():
@@ -26,10 +26,10 @@ from bgradar.bgradar_app import blueprint_bgradar
 app.register_blueprint(blueprint_bgradar, url_prefix='/bgradar')
 
 
-@app.errorhandler(Exception)
-def handle_error(error):
-    # close_error_connection()
-    return json.dumps({"error": str(error.message)}), 500
+# @app.errorhandler(Exception)
+# def handle_error(error):
+#     # close_error_connection()
+#     return json.dumps({"error": str(error.message)}), 500
 
 
 @app.route('/bgradarapi/test')

@@ -63,7 +63,7 @@ def deploy():
     run('git clone https://github.com/wesgt/BeautyGirlRadar.git')
     # run('git clone git@github.com:wesgt/BeautyGirlRadar.git')
 
-    create_env(env_name)
+    # create_env(env_name)
     print(green("Deploy End..."))
 
 

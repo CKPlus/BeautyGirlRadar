@@ -6,7 +6,7 @@ from hashlib import md5
 import json
 from PIL import Image
 from werkzeug.utils import secure_filename
-from flask import request, Blueprint, jsonify
+from flask import request, Blueprint, jsonify, redirect, url_for
 from flask import current_app as app
 from bgradar.api.data import beautylbs_manager
 from bgradar.api.packet import ClientResults, ClientResult
@@ -81,10 +81,15 @@ def upload_file():
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            print os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
+            path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(path)
+
+            im = Image.open(path)
+            im = im.convert('RGB')
+            im.thumbnail((300, 300), Image.ANTIALIAS)
+            im.save(path + ".thumb", 'PNG')
+
+            return redirect(url_for('uploaded_file', filename=filename))
 
     return '''
     <!doctype html>
