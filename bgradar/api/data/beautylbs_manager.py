@@ -26,7 +26,7 @@ class BeautyLBSManager():
                 }
             })
 
-    def update_comment_fans(self, comment, fans_url):
+    def update_comment_fans(self, uid, comment, fans_url):
         collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
         collection.update(
             {'_id': ObjectId(uid)},

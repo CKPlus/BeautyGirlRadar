@@ -70,7 +70,7 @@ def get_all_lbs_profile(uid=None):
             req_body = json.loads(request.data)
             comment = req_body['comment']
             fans_url = req_body['fans_url']
-            beautylbs_manager.update_comment_fans(comment, fans_url)
+            beautylbs_manager.update_comment_fans(uid, comment, fans_url)
 
         return clientresults.to_json(), status_code
     else:
