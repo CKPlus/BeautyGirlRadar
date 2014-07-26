@@ -26,7 +26,19 @@ class BeautyLBSManager():
                 }
             })
 
-    def update_lbs(self, fbid, lng, lat, comment=None, picurl=None):
+    def update_comment_fans(self, comment, fans_url):
+        collection = self.__get_collection(dbname_bgradar, c_name_beautylbs)
+        collection.update(
+            {'_id': ObjectId(uid)},
+            {
+                '$set': {
+                    'comment': comment,
+                    'fans_url': fans_url,
+                    'utime': datetime.utcnow()
+                }
+            })
+
+    def update_lbs(self, fbid, lng, lat, comment=None, fans_url=None, picurl=None):
 
         if picurl is None:
             picurl = ''
@@ -35,6 +47,9 @@ class BeautyLBSManager():
 
         if comment is None:
             comment = ''
+
+        if fans_url is None:
+            fans_url = ''
 
         id = ObjectId()
 
@@ -46,6 +61,7 @@ class BeautyLBSManager():
             'lat': lat,
             'picurl': picurl,
             'comment': comment,
+            'fans_url': fans_url,
             'ctime': datetime.utcnow()
             })
 
@@ -105,7 +121,7 @@ class BeautyLBSManager():
                 new_picurls = hot_profile['picurls']
 
                 if len(lbs_data['picurl']) > 0:
-                    new_picurls = new_picurls.append(lbs_data['picurl'])
+                    new_picurls.append(lbs_data['picurl'])
 
                 hot_profile['count'] = new_count
                 hot_profile['picurls'] = new_picurls
