@@ -17,7 +17,7 @@ def lbs_profile():
     clientresults = ClientResults()
 
     if request.method == 'POST':
-        print request.data
+        print 'data : {0}'.format(request.data)
         req_body = json.loads(request.data)
         fbid = req_body['fbid']
         lat = req_body['lat']
