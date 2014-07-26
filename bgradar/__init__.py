@@ -29,10 +29,10 @@ from bgradar.bgradar_app import blueprint_bgradar
 app.register_blueprint(blueprint_bgradar, url_prefix='/bgradar')
 
 
-@app.errorhandler(Exception)
-def handle_error(error):
-    # close_error_connection()
-    return json.dumps({"error": str(error.message)}), 500
+# @app.errorhandler(Exception)
+# def handle_error(error):
+#     # close_error_connection()
+#     return json.dumps({"error": str(error.message)}), 500
 
 
 @app.route('/api/test')
