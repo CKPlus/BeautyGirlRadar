@@ -35,26 +35,10 @@ app.register_blueprint(blueprint_bgradar, url_prefix='/bgradar')
 #     return json.dumps({"error": str(error.message)}), 500
 
 
-@app.route('/bgradarapi/test')
+@app.route('/api/test')
 def test():
-    user_manager.update_user('fbid')
-    beautylbs_manager.update_lbs('fbid', 121.517542, 25.046084, 'pic_url')
-    beautylbs_manager.update_lbs('fbid', 121.508272, 25.042157, 'pic_url')
-    beautylbs_manager.update_lbs('fbid', 121.499945, 25.035877, 'pic_url')
-
-    # beautylbs_manager.update_lbs('fbid', 25.046084, 121.517542, 'pic_url')
-    # beautylbs_manager.update_lbs('fbid', 25.042157, 121.508272, 'pic_url')
-    # beautylbs_manager.update_lbs('fbid', 25.035877, 121.499945, 'pic_url')
-    # beautylbs_manager.update_lbs('fbid', 25.041535, 121.516029, 'pic_url')
-    # beautylbs_manager.update_lbs('fbid', 25.063015, 121.551955, 'pic_url')
-    # beautylbs_manager.update_lbs('fbid', 25.070401, 121.49668, 'pic_url')
-    # near_data = beautylbs_manager.find_near(121.49, 25.03)
-    # for bg_near in near_data:
-    #     print bg_near
-
-    # near_data = beautylbs_manager.find_near_by_distance(121.49, 25.03, 2)
-    near_data = beautylbs_manager.find_near_by_distance(25.046084, 121.517542, 2)
-
-    for bg_near in near_data:
-        print bg_near
-    return 'wellcome_page'
+    # user_manager.update_user('fbid')
+    beautylbs_manager.update_lbs('fbid', 121.517542, 25.046084)
+    beautylbs_manager.update_lbs('fbid', 121.508272, 25.042157)
+    beautylbs_manager.update_lbs('fbid', 121.499945, 25.035877)
+    return 'test insert ok'
