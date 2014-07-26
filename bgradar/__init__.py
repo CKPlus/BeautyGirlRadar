@@ -3,9 +3,9 @@
 import json
 from flask import Flask, render_template
 from flask.ext import restful
-from webapi.data.data_manager import close_error_connection
-from webapi.data.data_manager import user_manager
-from webapi.data.data_manager import beautylbs_manager
+from bgradar.api.data.data_manager import close_error_connection
+from bgradar.api.data.data_manager import user_manager
+from bgradar.api.data.data_manager import beautylbs_manager
 
 
 class HelloWorld(restful.Resource):
@@ -22,19 +22,17 @@ def create_app():
 
 app = create_app()
 
-from bgradar.api import index
-app.register_blueprint(index, url_prefix='/api')
+# from bgradar.api.index import index
+# app.register_blueprint(index, url_prefix='/api')
 
-from bgradar.app import bgradar
-app.register_blueprint(index, url_prefix='/bgradar')
-
-
+from bgradar.app import blueprint_bgradar
+app.register_blueprint(blueprint_bgradar, url_prefix='/bgradar')
 
 
-# @app.errorhandler(Exception)
-# def handle_error(error):
-#     # close_error_connection()
-#     return json.dumps({"error": str(error.message)}), 500
+@app.errorhandler(Exception)
+def handle_error(error):
+    # close_error_connection()
+    return json.dumps({"error": str(error.message)}), 500
 
 
 @app.route('/bgradarapi/test')

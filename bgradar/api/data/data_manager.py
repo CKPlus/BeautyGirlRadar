@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 from pymongo import MongoClient
-from webapi.data.user_manager import UserManager
-from webapi.data.beautylbs_manager import BeautyLBSManager
+from bgradar.api.data.user_manager import UserManager
+from bgradar.api.data.beautylbs_manager import BeautyLBSManager
 
 
 # mongodb_connect_string = "mongodb://gogofun:gogofun@localhost:27017"
