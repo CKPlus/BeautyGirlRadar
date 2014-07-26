@@ -78,3 +78,5 @@ def get_all_lbs_profile(uid=None):
             client_lbs_data.picurl = bglbs_data.get('picurl', '')
             clientresults.results.append(client_lbs_data)
         return clientresults.to_json(), status_code
+
+
