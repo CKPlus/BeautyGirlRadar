@@ -4,6 +4,24 @@ import json
 from datetime import datetime
 
 
+class ClientHotPoints(object):
+    def __init__(self):
+        self.lng = 0.0
+        self.lat = 0.0
+        self.count = 0
+        self.picurls = []
+
+
+class ClientLBSData(object):
+    def __init__(self):
+        self.uid = ''
+        self.lng = 0.0
+        self.lat = 0.0
+        self.comment = ''
+        self.address = ''
+        self.picurl = ''
+
+
 class ClientResults(object):
 
     def __init__(self):
@@ -35,6 +53,24 @@ def to_json(python_object):
         return {
             'message': python_object.message,
             'results': python_object.results,
+        }
+
+    if isinstance(python_object, ClientHotPoints):
+        return {
+            'lng': python_object.lng,
+            'lat': python_object.lat,
+            'count': python_object.count,
+            'picurls': python_object.picurls,
+        }
+
+    if isinstance(python_object, ClientLBSData):
+        return {
+            'uid': python_object.uid,
+            'lng': python_object.lng,
+            'lat': python_object.lat,
+            'comment': python_object.comment,
+            'address': python_object.address,
+            'picurls': python_object.picurls
         }
 
     if isinstance(python_object, datetime):

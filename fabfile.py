@@ -8,7 +8,8 @@ env.hosts = ['54.92.113.106']
 env.user = 'ubuntu'
 env_base_path = '$HOME/.virtualenvs'
 env_name = 'bgradar'
-app_path = '$HOME/BeautyGirlRadar'
+# app_path = '$HOME/BeautyGirlRadar'
+app_path = '/var/www/BeautyGirlRadar'
 
 
 def first_install():
@@ -57,13 +58,16 @@ def deploy():
     print(green("Deploy Started..."))
     # first_install()
     # apt_get_install()
-    if files.exists(app_path):
-        run('rm -rf ' + app_path)
 
-    run('git clone https://github.com/wesgt/BeautyGirlRadar.git')
+    # if files.exists(app_path):
+    #     run('rm -rf ' + app_path)
+
+    with cd('/var/www/BeautyGirlRadar'):
+        # run('sudo git clone https://github.com/wesgt/BeautyGirlRadar.git')
+        run('sudo git pull')
     # run('git clone git@github.com:wesgt/BeautyGirlRadar.git')
 
-    create_env(env_name)
+    # create_env(env_name)
     print(green("Deploy End..."))
 
 
