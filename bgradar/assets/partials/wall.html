@@ -18,6 +18,10 @@
           <div class="col-md-4">
             <form>
               <div class="form-group">
+                <label for="exampleInputEmail1">出沒地</label>
+                <input type="text" class="form-control" ng-model="selectedRecord.address" >
+              </div>
+              <div class="form-group">
                 <label for="exampleInputEmail1">臉書</label>
                 <input type="text" class="form-control" ng-model="website">
               </div>
@@ -33,13 +37,13 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">辨識不能</button>
-        <button type="button" class="btn btn-primary" ng-click="save()">有請神龍</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">感謝大大無私的分享</button>
       </div>
     </div>
   </div>
 </div>
 
-<h1 class="page-header">Wall</h1>
+<h1 class="page-header">咩咩牆</h1>
 
 <div class="row placeholders">
     <div class="col-xs-6 col-sm-3 placeholder" ng-repeat="record in records">
@@ -48,8 +52,8 @@
       
 
       <img ng-if="record.picurl == ''" data-src="holder.js/300x300/auto/sky" class="img-responsive" alt="300x300" src="http://fakeimg.pl/300x300/" ng-click="showModal(record)" ng-src="/static/assets/images/thumb.jpg">
-      <h4 ng-if="record.fans_url != ''"><a href="{{record.fans_url}}" target="_blank">野生的正咩</a></h4>
-      <h4 ng-if="record.fans_url == ''">野生的正咩</h4>
+      <h3 ng-if="record.address != ''"><a href="{{record.fans_url}}" target="_blank">{{record.address | limitTo : 10}}</a></h3>
+      <h3 ng-if="record.address == ''">野生的正咩</h3>
 
       <span class="text-muted" ng-if="record.comment == ''">有請神龍</span>
       <span class="text-muted" ng-if="record.comment != ''">{{record.comment}}</span>
