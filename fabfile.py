@@ -4,7 +4,7 @@ from fabric.colors import green, yellow
 from fabric.contrib import files
 from fabric.context_managers import prefix
 
-env.hosts = ['54.92.113.106']
+env.hosts = ['54.199.246.223']
 env.user = 'ubuntu'
 env_base_path = '$HOME/.virtualenvs'
 env_name = 'bgradar'
@@ -23,6 +23,12 @@ def first_install():
     if not files.exists(env_base_path):
         run('mkdir $WORKON_HOME')
 
+    with prefix('WORKON_HOME=' + env_base_path):
+        run('echo "export WORKON_HOME=$WORKON_HOME" >> ~/.bashrc')
+        run('echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc')
+        run('echo "export PIP_VIRTUALENV_BASE=$WORKON_HOME" >> ~/.bashrc')
+        run('source ~/.bashrc')
+
     print(green("First Install End..."))
 
 
@@ -30,10 +36,13 @@ def apt_get_install():
     print(green("apt-get Install Started..."))
     run('sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10')
     run("echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list")
+    run('sudo add-apt-repository ppa:nginx/stable')
     run('sudo apt-get update')
+    run('sudo apt-get install nginx')
     run('sudo apt-get install mongodb-org')
     run('sudo apt-get install git')
     run('sudo apt-get install python-dev')
+    run('sudo aptitude install build-essential python-dev libjpeg-dev zlib1g-dev libfreetype6-dev')
     print(green("apt-get Install end..."))
 
 
@@ -69,6 +78,19 @@ def deploy():
 
     # create_env(env_name)
     print(green("Deploy End..."))
+
+
+def chmod():
+    # permission
+    print(green("chmod Started..."))
+    # run('sudo addgroup ubuntu')
+    run('sudo adduser $USER ubuntu')
+    run('sudo chown -R root:ubuntu /var/www')
+    run('sudo find /var/www -type f -exec chmod 664 {} \;')
+    run('sudo find /var/www -type d -exec chmod 775 {} \;')
+    run('sudo find /var/www -type d -exec chmod g+s {} \;')
+
+    print(green("chmod end..."))
 
 
 def is_local():

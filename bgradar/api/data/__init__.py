@@ -3,7 +3,7 @@
 from pymongo import MongoClient
 
 # mongodb_connect_string = "mongodb://gogofun:gogofun@localhost:27017"
-mongodb_connect_string = "mongodb://gogofun:gogofun@54.92.113.106:27017"
+mongodb_connect_string = "mongodb://gogofun:gogofun@54.199.246.223:27017"
 
 global_connection = None
 
