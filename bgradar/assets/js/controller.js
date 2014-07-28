@@ -1,9 +1,9 @@
 angular.module('bgradarApp.controllers', [])
-  .controller('WallController', ['$scope', '$modal', 'BGlbs',
-  	 function($scope, $modal, BGlbs) {
+  .controller('WallController', ['$scope', '$modal', 'BGlbs50',
+  	 function($scope, $modal, BGlbs50) {
   	 	var init = function(){
   	 		$scope.selectedRecord = {}
-  	 		var records = BGlbs.list(function(data){
+  	 		var records = BGlbs50.list(function(data){
   	 			$scope.records = data.results;
   	 		});
 		}
@@ -27,7 +27,7 @@ angular.module('bgradarApp.controllers', [])
   				"fans_url": $scope.website || ''
 			}
 
-			BGlbs.updateData(patchData, function(){
+			BGlbs50.updateData(patchData, function(){
 				alert('感謝眾鄉民的工人智慧！');
 				$('#myModal').modal('toggle');
 				$scope.website = '';

@@ -46,6 +46,17 @@ bgradarApp.factory('BGlbs', ['$resource', function($resource) {
         });
     }]);
 
+bgradarApp.factory('BGlbs50', ['$resource', function($resource) {
+   return $resource('/api/bglbsdata50/:_id',
+        {
+          '_id' : '@_id'
+        },
+        {
+           'list' : { method:'GET' },
+           'updateData' : { method:'PATCH' }
+        });
+    }]);
+
 /*
 bgradarApp.config(['$datepickerProvider', function($datepickerProvider) {
     angular.extend($datepickerProvider.defaults, {
