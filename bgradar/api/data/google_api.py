@@ -6,7 +6,7 @@ import urllib3
 
 http = urllib3.PoolManager(10)
 GOOGLE_GEOCODE_API_URL = 'http://maps.googleapis.com/maps/api/geocode/json'
-GOOGLE_API_KEY = 'AIzaSyDdJ6sYjPSXJBMu3j1CjWoxX0rIVrNUEgQ'
+GOOGLE_API_KEY = ''
 
 
 def get_address_by_lnglat(lng, lat):
