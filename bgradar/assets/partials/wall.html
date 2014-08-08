@@ -9,8 +9,8 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-8">
-            <!-- <img  alt="200x200"  width="100%" height="480" src="http://54.92.113.106:5000/static/uploads/{{selectedRecord.picurl}}.thumb"> -->
-            <img ng-if="selectedRecord.picurl != ''" style="height: 400px;width: 400px;margin: 0 auto;" data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/" ng-click="showModal(record)" ng-src="http://54.92.113.106:5000/static/uploads/{{selectedRecord.picurl}}">
+            <!-- <img  alt="200x200"  width="100%" height="480" src="/static/uploads/{{selectedRecord.picurl}}.thumb"> -->
+            <img ng-if="selectedRecord.picurl != ''" style="height: 400px;width: 400px;margin: 0 auto;" data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/" ng-click="showModal(record)" ng-src="/static/uploads/{{selectedRecord.picurl}}">
       
 
             <img ng-if="selectedRecord.picurl == ''" data-src="holder.js/300x300/auto/sky" class="img-responsive" alt="300x300"  ng-click="showModal(record)" src="http://fakeimg.pl/450x300/?text=No%20pic%20no%20truth" style="height: 300px;width: 450px;margin: 0 auto;">
@@ -48,7 +48,7 @@
 <div class="row placeholders">
     <div class="col-xs-6 col-sm-3 placeholder" ng-repeat="record in records">
 
-      <img ng-if="record.picurl != ''" data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/" ng-click="showModal(record)" ng-src="http://54.92.113.106:5000/static/uploads/{{record.picurl}}.thumb">
+      <img ng-if="record.picurl != ''" data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="200x200" src="http://fakeimg.pl/200x200/" ng-click="showModal(record)" ng-src="/static/uploads/{{record.picurl}}.thumb">
       
 
       <img ng-if="record.picurl == ''" data-src="holder.js/300x300/auto/sky" class="img-responsive" alt="300x300" src="http://fakeimg.pl/300x300/" ng-click="showModal(record)" ng-src="/static/assets/images/thumb.jpg">

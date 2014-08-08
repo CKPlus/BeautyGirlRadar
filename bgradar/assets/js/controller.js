@@ -44,7 +44,6 @@ angular.module('bgradarApp.controllers', [])
   	 function($scope, BGlbs, $timeout) {
   	 	google.maps.visualRefresh = true;
   	 	var markerToClose = null;
-  	 	// var origCenter = {latitude: $scope.map.center.latitude, longitude: $scope.map.center.longitude};
   	 	var init = function(){
   	 		$scope.selectedRecord = {}
   	 		
@@ -85,32 +84,6 @@ angular.module('bgradarApp.controllers', [])
 			    zoom: 15
 			};
 
-			// var dynamicMarkers = [
-   //    {   id: 1,
-   //      latitude: 46,
-   //      longitude: -79
-   //    },
-   //    {
-   //      id: 2,
-   //      latitude: 33,
-   //      longitude: -79
-   //    },
-   //    {
-   //      id: 3,
-   //      latitude: 35,
-   //      longitude: -127
-   //    }
-   //  ];
-   //  _.each(dynamicMarkers, function (marker) {
-   //    marker.closeClick = function () {
-   //      marker.showWindow = false;
-   //      $scope.$apply();
-   //    };
-   //    marker.onClicked = function () {
-   //      $scope.onMarkerClicked(marker);
-   //    };
-   //  });
-    // $scope.map.dynamicMarkers = dynamicMarkers;
 
 		}
 
@@ -158,5 +131,4 @@ angular.module('bgradarApp.controllers', [])
 
 		init();
 
-		// var origCenter = {latitude: $scope.map.center.latitude, longitude: $scope.map.center.longitude};
   	}])
